@@ -16,7 +16,7 @@ IMG_WIDTH, IMG_HEIGHT = 416, 416
 CONFIDENCE = 0.5
 THRESH = 0.3
 
-net = cv2.dnn.readNetFromDarknet("yolo/yolo_models/yolov3-face.cfg", "yolo/yolo_weights/yolov3-face.weights")
+net = cv2.dnn.readNetFromDarknet("Yolo/models/yolov3-face.cfg", "Yolo/weights/yolov3-face.weights")
 net.setPreferableBackend(cv2.dnn.DNN_BACKEND_OPENCV)
 net.setPreferableTarget(cv2.dnn.DNN_TARGET_CPU)
 
