@@ -8,5 +8,5 @@
 
 #### TODO:
 - [ ] clean code
-- [ ] provide model links
+- [X] provide model links
 - [ ] add descriptions to methods
