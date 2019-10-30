@@ -119,7 +119,7 @@ def predict(width, height, confidences, boxes, prob_threshold, iou_threshold=0.5
 
 video_capture = cv2.VideoCapture(0)
 
-onnx_path = 'ultra_light/ultra_light_models/ultra_light_640.onnx'
+onnx_path = 'UltraLight/models/ultra_light_640.onnx'
 onnx_model = onnx.load(onnx_path)
 predictor = prepare(onnx_model)
 ort_session = ort.InferenceSession(onnx_path)
