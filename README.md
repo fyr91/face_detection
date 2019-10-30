@@ -11,3 +11,4 @@
 - [ ] clean code
 - [X] provide model links
 - [ ] add descriptions to methods
+- [ ] add references
