@@ -41,11 +41,11 @@ def predict(width, height, confidences, boxes, prob_threshold, iou_threshold=0.5
     return picked_box_probs[:, :4].astype(np.int32), np.array(picked_labels), picked_box_probs[:, 4]
 
 
-filename = 'chris.jpg'
+filename = 'crowd.jpg'
 model = 'ultra-light'
 scale = 1
 
-onnx_path = 'ultra_light/ultra_light_models/Mb_Tiny_RFB_FD_train_input_640.onnx'
+onnx_path = 'UltraLight/models/ultra_light_640.onnx'
 onnx_model = onnx.load(onnx_path)
 onnx.checker.check_model(onnx_model)
 onnx.helper.printable_graph(onnx_model.graph)
