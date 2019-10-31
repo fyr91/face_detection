@@ -2,7 +2,7 @@
 # @Author: fyr91
 # @Date:   2019-10-22 15:05:15
 # @Last Modified by:   fyr91
-# @Last Modified time: 2019-10-31 12:13:46
+# @Last Modified time: 2019-10-31 12:38:02
 import cv2
 import dlib
 import numpy as np
@@ -14,7 +14,6 @@ import onnxruntime as ort
 from onnx_tf.backend import prepare
 
 video_capture = cv2.VideoCapture(0)
-out = cv2.VideoWriter('TestOutput/output.mp4', -1, 10.0, (640,480))
 
 onnx_path = 'UltraLight/models/ultra_light_640.onnx'
 onnx_model = onnx.load(onnx_path)
@@ -53,11 +52,10 @@ while True:
             cv2.rectangle(frame, (x1, y1), (x2, y2), (80,18,236), 2)
             cv2.rectangle(frame, (x1, y2 - 20), (x2, y2), (80,18,236), cv2.FILLED)
             font = cv2.FONT_HERSHEY_DUPLEX
-            text = f"face: {labels[i]}"
-            cv2.putText(frame, text, (x1 + 6, y2 - 6), font, 0.5, (255, 255, 255), 1)
+            text = f"Face: {round(probs[i], 2)}"
+            cv2.putText(frame, text, (x1 + 6, y2 - 6), font, 0.3, (255, 255, 255), 1)
 
         cv2.imshow('Video', frame)
-        out.write(frame)
 
         # Hit 'q' on the keyboard to quit!
     if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -65,5 +63,4 @@ while True:
 
 # Release handle to the webcam
 video_capture.release()
-out.release()
 cv2.destroyAllWindows()
