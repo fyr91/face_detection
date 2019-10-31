@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 # @Author: User
 # @Date:   2019-10-17 12:18:50
-# @Last Modified by:   User
-# @Last Modified time: 2019-10-17 14:24:35
-import cv2
-from faced import FaceDetector
+# @Last Modified by:   fyr91
+# @Last Modified time: 2019-10-31 11:46:21
 import os
+import cv2
 import time
+from faced import FaceDetector
 
 filename = 'crowd3.jpg'
 model = 'faced'
@@ -23,6 +23,10 @@ t1 = time.time()
 print(f'took {round(t1-t0, 3)} to get {len(face_locations)} faces')\
 
 for (x, y, w, h, _) in face_locations:
+    x1 = x-int(w/2)
+    x2 = x+int(w/2)
+    y1 = y-int(h/2)
+    y2 = y+int(h/2)
     cv2.rectangle(raw_img, (x-int(w/2),y-int(h/2)), (x+int(w/2),y+int(h/2)), (80,18,236), 2)
 
 font = cv2.FONT_HERSHEY_DUPLEX

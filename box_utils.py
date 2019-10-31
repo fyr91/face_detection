@@ -1,41 +1,6 @@
 import numpy as np
 
 
-def convert_locations_to_boxes(locations, priors, center_variance,
-                               size_variance):
-    """Convert regressional location results of SSD into boxes in the form of (center_x, center_y, h, w).
-    The conversion:
-        $$predicted\_center * center_variance = \frac {real\_center - prior\_center} {prior\_hw}$$
-        $$exp(predicted\_hw * size_variance) = \frac {real\_hw} {prior\_hw}$$
-    We do it in the inverse direction here.
-    Args:
-        locations (batch_size, num_priors, 4): the regression output of SSD. It will contain the outputs as well.
-        priors (num_priors, 4) or (batch_size/1, num_priors, 4): prior boxes.
-        center_variance: a float used to change the scale of center.
-        size_variance: a float used to change of scale of size.
-    Returns:
-        boxes:  priors: [[center_x, center_y, h, w]]. All the values
-            are relative to the image size.
-    """
-    # priors can have one dimension less.
-    if len(priors.shape) + 1 == len(locations.shape):
-        priors = np.expand_dims(priors, 0)
-    return np.concatenate([
-        locations[..., :2] * center_variance * priors[..., 2:] + priors[..., :2],
-        np.exp(locations[..., 2:] * size_variance) * priors[..., 2:]
-    ], axis=len(locations.shape) - 1)
-
-
-def convert_boxes_to_locations(center_form_boxes, center_form_priors, center_variance, size_variance):
-    # priors can have one dimension less
-    if len(center_form_priors.shape) + 1 == len(center_form_boxes.shape):
-        center_form_priors = np.expand_dims(center_form_priors, 0)
-    return np.concatenate([
-        (center_form_boxes[..., :2] - center_form_priors[..., :2]) / center_form_priors[..., 2:] / center_variance,
-        np.log(center_form_boxes[..., 2:] / center_form_priors[..., 2:]) / size_variance
-    ], axis=len(center_form_boxes.shape) - 1)
-
-
 def area_of(left_top, right_bottom):
     """Compute the areas of rectangles given two corners.
     Args:
@@ -64,18 +29,6 @@ def iou_of(boxes0, boxes1, eps=1e-5):
     area0 = area_of(boxes0[..., :2], boxes0[..., 2:])
     area1 = area_of(boxes1[..., :2], boxes1[..., 2:])
     return overlap_area / (area0 + area1 - overlap_area + eps)
-
-
-def center_form_to_corner_form(locations):
-    return np.concatenate([locations[..., :2] - locations[..., 2:] / 2,
-                           locations[..., :2] + locations[..., 2:] / 2], len(locations.shape) - 1)
-
-
-def corner_form_to_center_form(boxes):
-    return np.concatenate([
-        (boxes[..., :2] + boxes[..., 2:]) / 2,
-        boxes[..., 2:] - boxes[..., :2]
-    ], len(boxes.shape) - 1)
 
 
 def hard_nms(box_scores, iou_threshold, top_k=-1, candidate_size=200):

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: User
 # @Date:   2019-10-18 14:22:58
-# @Last Modified by:   User
-# @Last Modified time: 2019-10-18 15:27:45
+# @Last Modified by:   fyr91
+# @Last Modified time: 2019-10-31 11:54:04
 import cv2
 import os
 import time
@@ -16,7 +16,7 @@ IMG_WIDTH, IMG_HEIGHT = 416, 416
 CONFIDENCE = 0.5
 THRESH = 0.3
 
-net = cv2.dnn.readNetFromDarknet("Yolo/models/yolov3-face.cfg", "Yolo/weights/yolov3-face.weights")
+net = cv2.dnn.readNetFromDarknet("Yolo/yolo_models/yolov3-face.cfg", "Yolo/yolo_weights/yolov3-face.weights")
 net.setPreferableBackend(cv2.dnn.DNN_BACKEND_OPENCV)
 net.setPreferableTarget(cv2.dnn.DNN_TARGET_CPU)
 

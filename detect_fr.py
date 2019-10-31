@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: User
 # @Date:   2019-10-16 17:28:22
-# @Last Modified by:   User
-# @Last Modified time: 2019-10-30 18:25:23
+# @Last Modified by:   fyr91
+# @Last Modified time: 2019-10-31 11:51:05
 import face_recognition
 import cv2
 import os
@@ -22,7 +22,6 @@ t1 = time.time()
 print(f'took {round(t1-t0, 3)} to get {len(face_locations)} faces')
 
 for (top, right, bottom, left) in face_locations:
-    print(top)
     cv2.rectangle(raw_img, (left, top), (right, bottom), (80,18,236), 2)
 
 font = cv2.FONT_HERSHEY_DUPLEX
