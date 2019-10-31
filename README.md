@@ -8,7 +8,7 @@
 - [yoloface](https://github.com/sthanhng/yoloface) (a face detector based on yolov3)
 
 #### Real time face + 5 facial feature points detection on webcam:
-Run ultra_light_webcam.py
+Run ultra_light_webcam.py:
 
 ![Test output](TestOutput/webcam_test.gif)
 
