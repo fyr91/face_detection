@@ -7,6 +7,10 @@
 - [an ultra-light model](https://github.com/Linzaer/Ultra-Light-Fast-Generic-Face-Detector-1MB) (1M ultra small model)
 - [yoloface](https://github.com/sthanhng/yoloface) (a face detector based on yolov3)
 
+#### Real time face + 5 facial feature points detection on webcam:
+Run ultra_light_webcam.py
+![Test output](TestOutput/webcam_test.gif)
+
 #### TODO:
 - [X] test code
 - [X] provide model links
