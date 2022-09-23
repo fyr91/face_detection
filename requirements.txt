@@ -23,7 +23,7 @@ onnxruntime==0.5.0
 opencv-python==4.1.1.26
 opt-einsum==3.1.0
 Pillow==6.2.1
-protobuf==3.10.0
+protobuf==3.18.3
 PyYAML==5.1.2
 six==1.12.0
 tensorboard==1.13.1
